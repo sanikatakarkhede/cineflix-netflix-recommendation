@@ -1,0 +1,848 @@
+{
+  "user_alex": {
+    "id": "user_alex",
+    "name": "Alex",
+    "email": "alex@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$ybyr2o6hPATlGIeK$efd07c217b8b357f5b2a1da70ce32c59b55fa3e3810ec690c2afe140ee1b4f7582cb135c110cb770be9203b674bd80e6d8aacb54b1c282dc73e0105e8fb4dda0",
+    "avatar": "\ud83d\ude80",
+    "bio": "Sci-Fi & Mind Benders Enthusiast",
+    "created_at": "2026-08-31T13:05:34.398009",
+    "profile": {
+      "id": "sci_fi_geek",
+      "name": "Alex (Sci-Fi & Mind Benders)",
+      "avatar": "\ud83d\ude80",
+      "description": "Loves Christopher Nolan, time loops, deep psychological mysteries, and high-concept Sci-Fi.",
+      "watch_history": [
+        "m1",
+        "m2",
+        "m4",
+        "m6",
+        "m8"
+      ],
+      "ratings": {
+        "m1": 5,
+        "m2": 5,
+        "m4": 5,
+        "m8": 4,
+        "m6": 5
+      },
+      "disliked": [
+        "m32",
+        "m35"
+      ],
+      "preferred_genres": [
+        "Sci-Fi",
+        "Mystery",
+        "Thriller"
+      ],
+      "preferred_moods": [
+        "Mind-bending",
+        "Cerebral",
+        "Atmospheric"
+      ],
+      "sliders": {
+        "action_level": 70,
+        "dark_tone": 80,
+        "plot_depth": 95
+      }
+    }
+  },
+  "user_sarah": {
+    "id": "user_sarah",
+    "name": "Sarah",
+    "email": "sarah@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$LKlB72Dfm6dFKz1h$aeab04c7c81a37285985e91d8d19c78b6e80a26f8bc8d1ca3d3ee2609f9dc652c4195d05502e18ebe525db2e6b43872578e303e53799abe025b92650830c805b",
+    "avatar": "\ud83d\udd0d",
+    "bio": "True Crime & Dark Thrillers Fanatic",
+    "created_at": "2026-08-31T13:05:34.526644",
+    "profile": {
+      "id": "true_crime_addict",
+      "name": "Sarah (True Crime & Dark Thrillers)",
+      "avatar": "\ud83d\udd0d",
+      "description": "Binge-watches gritty crime sagas, David Fincher thrillers, and psychological police procedurals.",
+      "watch_history": [
+        "m11",
+        "m12",
+        "m13",
+        "m18",
+        "m20"
+      ],
+      "ratings": {
+        "m11": 5,
+        "m12": 5,
+        "m13": 5,
+        "m18": 4,
+        "m20": 5
+      },
+      "disliked": [
+        "m34",
+        "m71"
+      ],
+      "preferred_genres": [
+        "Crime",
+        "Drama",
+        "Thriller",
+        "Mystery"
+      ],
+      "preferred_moods": [
+        "Dark",
+        "Psychological",
+        "Chilling",
+        "Gritty"
+      ],
+      "sliders": {
+        "action_level": 40,
+        "dark_tone": 95,
+        "plot_depth": 90
+      }
+    }
+  },
+  "user_jordan": {
+    "id": "user_jordan",
+    "name": "Jordan",
+    "email": "jordan@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$JNkZWcKseeWHqsmJ$7f1cfe8cbaf940b8b2befe9bb5ebd8267697e93892feb970714378128abad52c8478399723083860c6a3ca070843028c70cb8585e10c90c46915db100d233d13",
+    "avatar": "\ud83c\udf7f",
+    "bio": "Feel-Good Comedies & Cozy Cinema",
+    "created_at": "2026-08-31T13:05:34.651487",
+    "profile": {
+      "id": "feel_good_fan",
+      "name": "Jordan (Feel-Good & Cozy Rom-Coms)",
+      "avatar": "\ud83c\udf7f",
+      "description": "Looking for heartwarming laughs, witty banter, comforting series, and charming romantic comedies.",
+      "watch_history": [
+        "m31",
+        "m33",
+        "m36",
+        "m37",
+        "m73"
+      ],
+      "ratings": {
+        "m31": 5,
+        "m33": 5,
+        "m36": 5,
+        "m37": 5,
+        "m73": 5
+      },
+      "disliked": [
+        "m48",
+        "m13"
+      ],
+      "preferred_genres": [
+        "Comedy",
+        "Romance",
+        "Drama"
+      ],
+      "preferred_moods": [
+        "Wholesome",
+        "Hilarious",
+        "Heartwarming",
+        "Feel-Good"
+      ],
+      "sliders": {
+        "action_level": 20,
+        "dark_tone": 10,
+        "plot_depth": 60
+      }
+    }
+  },
+  "user_marcus": {
+    "id": "user_marcus",
+    "name": "Marcus",
+    "email": "marcus@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$qykYzpDIbxg2uKLr$0c940dd82a98126ed30d4bf4e3078fe4a805bb8fc9d7e47d0972b559a53d3ffce0f09c3e4c3f0dc3d5f3eaabf029db23260dcefee74a051d4d9dcf0560edda23",
+    "avatar": "\ud83d\udd25",
+    "bio": "Action & High-Stakes Blockbusters",
+    "created_at": "2026-08-31T13:05:34.776379",
+    "profile": {
+      "id": "adrenaline_junkie",
+      "name": "Marcus (Action & High-Stakes Blockbusters)",
+      "avatar": "\ud83d\udd25",
+      "description": "Thrives on explosive stuntwork, adrenaline-fueled shootouts, superhero epics, and high-octane blockbusters.",
+      "watch_history": [
+        "m23",
+        "m24",
+        "m25",
+        "m28",
+        "m29"
+      ],
+      "ratings": {
+        "m23": 5,
+        "m24": 4,
+        "m25": 5,
+        "m28": 5,
+        "m29": 5
+      },
+      "disliked": [
+        "m39",
+        "m40"
+      ],
+      "preferred_genres": [
+        "Action",
+        "Adventure",
+        "Thriller"
+      ],
+      "preferred_moods": [
+        "Non-Stop Action",
+        "Adrenaline",
+        "Epic",
+        "Explosive"
+      ],
+      "sliders": {
+        "action_level": 95,
+        "dark_tone": 60,
+        "plot_depth": 65
+      }
+    }
+  },
+  "user_7862d87f6f": {
+    "id": "user_7862d87f6f",
+    "name": "Integration Tester",
+    "email": "integration_test@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$3GRwUUtq0MYwrYvp$e5773b8aba905d011b8ead95c26ae8dabaacfb22c04142f49087c2ebcdee476b65fc5d941040c0ce6369622861ac06bbf87d6e29e44466588f0ea346799c106b",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-08-31T13:07:49.732090",
+    "profile": {
+      "id": "user_7862d87f6f",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_d9e1125f3f": {
+    "id": "user_d9e1125f3f",
+    "name": "sanika takarkhede",
+    "email": "sanikatakarkhede@gmail.com",
+    "password_hash": "scrypt:32768:8:1$6XTj6UFDFgdoLzRh$aec101f3794a9aa983f26bbd46a66129466fbb67cbbf8960e66480e21b82832abbb3925dac5583eb72a6d67955c98f86124d8c0017e98d9884d8d68ce0eb9ab8",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-08-31T13:12:58.440894",
+    "profile": {
+      "id": "user_d9e1125f3f",
+      "name": "Sarah (True Crime & Dark Thrillers)",
+      "avatar": "\ud83d\udd0d",
+      "description": "Binge-watches gritty crime sagas, David Fincher thrillers, and psychological police procedurals.",
+      "watch_history": [
+        "m11",
+        "m12",
+        "m13",
+        "m18",
+        "m20"
+      ],
+      "ratings": {
+        "m11": 5,
+        "m12": 5,
+        "m13": 5,
+        "m18": 4,
+        "m20": 5
+      },
+      "disliked": [
+        "m34",
+        "m71"
+      ],
+      "preferred_genres": [
+        "Crime",
+        "Drama",
+        "Thriller",
+        "Mystery"
+      ],
+      "preferred_moods": [
+        "Dark",
+        "Psychological",
+        "Chilling",
+        "Gritty"
+      ],
+      "sliders": {
+        "action_level": 40,
+        "dark_tone": 95,
+        "plot_depth": 90
+      }
+    }
+  },
+  "user_da2268883e": {
+    "id": "user_da2268883e",
+    "name": "Integration Tester",
+    "email": "test_bc3fb866@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$xwUtguNUo5uUjDL0$6801ccc81ead5b08d776fa6943c613d7d203c985f081abc68ef79284d6345cfad81a0347e6568a327e4f84278524e8fa1d68283066adcab38a9407624c2330e0",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-08-31T13:14:27.351957",
+    "profile": {
+      "id": "user_da2268883e",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_f4157cf829": {
+    "id": "user_f4157cf829",
+    "name": "Integration Tester",
+    "email": "test_cb726af5@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$Dhj3vKdv43Wugta3$4deae5bd831b79ef08a79a762623fb5f8347f9f7d334fc64d47e02b84f267e501b1903668095299112d4ab654b1e9031ea1b077a87e69e31baf708ce9435a29a",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-08-31T22:32:11.683883",
+    "profile": {
+      "id": "user_f4157cf829",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_f8d081533a": {
+    "id": "user_f8d081533a",
+    "name": "Integration Tester",
+    "email": "test_8eb990b8@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$jjyj0DvQFtpTknMs$65d7a298ea6d5cec7a0715c187e1374f33f7b225d9d923f173baf861784258f5d631e5791720843da01c02d57e8c5ea97b9d332c9ec55690cc7f2c650cc180f4",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-08-31T22:43:22.225675",
+    "profile": {
+      "id": "user_f8d081533a",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_2981d032ec": {
+    "id": "user_2981d032ec",
+    "name": "Integration Tester",
+    "email": "test_435d3e68@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$PArRGzRilDXqutIw$0ed77b462bb1adfaed08881ad6d02a7f6c665c49158f4ef1a5ba308601aa202c55412e3cb952bcf119f4d4ca1ba0ad663e0d6fa3f95d2eb77df36fe6d8cb8330",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-08-31T22:44:15.180782",
+    "profile": {
+      "id": "user_2981d032ec",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_d234fc88c6": {
+    "id": "user_d234fc88c6",
+    "name": "Integration Tester",
+    "email": "test_6d9d8811@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$ZEvhZTmMDd1NAZfY$a743e3f5f941891b3cc79d5dac62325bacae62ef18c42c7191e14fd1556d4901b642b01de29341a566310e58364f7d1ada0cbb914ba072e355ac0aab6467a23a",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-08-31T22:45:28.092366",
+    "profile": {
+      "id": "user_d234fc88c6",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_591d29a126": {
+    "id": "user_591d29a126",
+    "name": "Integration Tester",
+    "email": "test_a51d613d@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$ew43qNnAupB4wwhV$de9b6f9f5a046bc3ae0050d1475364f56077e75a182f9f9a00127fefc171414947dfbb70b2ed622923bc194ae36a00c069cff2a5f5015ac6c2c6da0f58d1ff09",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-08-31T22:51:03.569470",
+    "profile": {
+      "id": "user_591d29a126",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_400bdcf9d8": {
+    "id": "user_400bdcf9d8",
+    "name": "Integration Tester",
+    "email": "test_27a59ff3@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$Rj9nJ25xxJqEGffN$627505cf6179064d9a22d4645efab0a8b06c5ec226b6abe70d67fbeb8007dab6cce084add2ab2ae32b0e108219aa692ae36518be5482cdc8d50d64a0cf6d8efe",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-08-31T23:07:05.991805",
+    "profile": {
+      "id": "user_400bdcf9d8",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_5b56f72653": {
+    "id": "user_5b56f72653",
+    "name": "Integration Tester",
+    "email": "test_fe03892f@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$jBLf6y08RbcA1lqt$e7563f0fcab06000e4c3a2df8f739d75a02a500ff17c1d23d2f5a9e032bb9c5151504a0f96166bc78d0ab202c99ef4c26caceb628f9db3b0ee62ad22b2f6bafb",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-01T21:18:21.067812",
+    "profile": {
+      "id": "user_5b56f72653",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_e362beb677": {
+    "id": "user_e362beb677",
+    "name": "Integration Tester",
+    "email": "test_9995b368@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$uUQEraPRwr9l3Dji$2423adf38f4e4d400c6f764192634ba43fe423f2afa9f86281ed577da54f2e1b0db84b1cc3535db515e00dc3209c88bc35ae23d08bc29d946ddab91234b3d195",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-01T22:51:18.253619",
+    "profile": {
+      "id": "user_e362beb677",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_20dbffe9f7": {
+    "id": "user_20dbffe9f7",
+    "name": "Integration Tester",
+    "email": "test_fde4bc06@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$dHu6OOh9RrTglmDE$02b53775a43ad2b95a38f0d02f5d6ba30800071f76ae6204b8f55660533232ec7720a8291290b76313ecedc522e08c0dbe2ed0b6d4d7428e9aad47de564f9894",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-01T22:51:49.081899",
+    "profile": {
+      "id": "user_20dbffe9f7",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_21d6f5f86f": {
+    "id": "user_21d6f5f86f",
+    "name": "Integration Tester",
+    "email": "test_87717e58@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$uIensTHym0ig6Vz3$d4ffb7722aa74a162f5b699ef695286ee2dd5fe7b7de495c79419b1c7fb610e00f28c36cad4615c1f5a1aced37d5a2040eda6f799b4d0b9b932a563e8c4bbaf7",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-01T22:52:19.856435",
+    "profile": {
+      "id": "user_21d6f5f86f",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_9744b166eb": {
+    "id": "user_9744b166eb",
+    "name": "Integration Tester",
+    "email": "test_d9489699@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$Q3SeSaGHR64snO12$640749f02312d9b03e19a5dd90335719e17d7d3f913fab7dbcd907546797f5e960f9c9dac6e787c610d2286f369f72f3a342c5db99e41c4375c97505d36898d8",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-02T23:09:48.246076",
+    "profile": {
+      "id": "user_9744b166eb",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_ac27862f7f": {
+    "id": "user_ac27862f7f",
+    "name": "Integration Tester",
+    "email": "test_dae25eeb@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$LpLeS7xLRqW0WZBJ$a1804b2ca24b0493c4a4a8389aab6d0e9e61a5ef3c6132762e7de1391d729c1aeca334ab4d9ce5cd5f7246221f30506d593b41f0ac8583b5bb2b4f2030a4117d",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-02T23:19:22.159284",
+    "profile": {
+      "id": "user_ac27862f7f",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_799329b86c": {
+    "id": "user_799329b86c",
+    "name": "Integration Tester",
+    "email": "test_0d007f50@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$bbDnJPhwRadSsG2f$1ea40ff62df75c4659b8c25be5c2a93863dd822bacb06f25a2b3660b9f6d1f21fa6771cc602296c9e2db2a031e1bdda947f3a1a18c0b7beb9791ada90270ee3a",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-02T23:22:23.281008",
+    "profile": {
+      "id": "user_799329b86c",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_c39dae7c93": {
+    "id": "user_c39dae7c93",
+    "name": "Integration Tester",
+    "email": "test_c9ffbe03@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$IQmV0sGtwHlOe8IS$58f2aa743a0b511e798db2b009102709da7a6c713f0e03531547bcb3f2adcf5230ee382ab098dc04c4e0defdff15e1ca213cc6bd7dc9476e3ff1cdadaa4b01f2",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-02T23:22:53.343026",
+    "profile": {
+      "id": "user_c39dae7c93",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_ee4cfca949": {
+    "id": "user_ee4cfca949",
+    "name": "Integration Tester",
+    "email": "test_a9b16dc1@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$G5pYkq9TGhWmjlBU$1649dd62741e9b7cbc01cc0ba31238f1b85cab4c2d90ab9de5c9bd3258c19c6978103a183b8765e082753d5a952d7d3e1baa1a66ecf78d9e9c2be9b805c817ae",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-02T23:28:37.145850",
+    "profile": {
+      "id": "user_ee4cfca949",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_ed557795e0": {
+    "id": "user_ed557795e0",
+    "name": "Integration Tester",
+    "email": "test_22b11c3e@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$t4WpiosFy5E2GOs3$8399bb622b444a1a6cedf4ad62742910bb8f649316b20a91b39dcf906c7fe7938c8fd469864623d80699840142d14973a24e0317ca0bea185e3acbb996dac6a5",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-02T23:36:44.564804",
+    "profile": {
+      "id": "user_ed557795e0",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_66a5a7ead6": {
+    "id": "user_66a5a7ead6",
+    "name": "Integration Tester",
+    "email": "test_1879c3a7@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$QbxSYY8oeUSRJPqK$71f37b63382741040ecdab28eb948ff381536a6cf9afeba6fbd4b010f977cf8374823738d2d9a4abdb8b2ec0704cba5e43ade5ff515a208e7ea9d4ceb8f35dfb",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-02T23:38:06.448212",
+    "profile": {
+      "id": "user_66a5a7ead6",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_1a647794e7": {
+    "id": "user_1a647794e7",
+    "name": "Integration Tester",
+    "email": "test_ec9958c3@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$NYcMqBQE96vpAh0t$5a85b8ea581a688988ec90596b50159c6f19b77f56eb3c77bcdde8fc566d6f80ab9f76c148fd54abc60b17e64d67b9b6d0e1110669b5c40137ba9827916dc6df",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-02T23:38:40.243872",
+    "profile": {
+      "id": "user_1a647794e7",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_61ccb0dab9": {
+    "id": "user_61ccb0dab9",
+    "name": "Integration Tester",
+    "email": "test_bfe2d15e@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$xNvlVnW2XaanfH9O$a7163281462200a1a45a0ce5745a106078547b37fe48be3ad3a7df30b0588a0dd775ed6bcdc5cc84f430460d7a2639d89d92da1caca5d930e07d60aef6c2c484",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-02T23:39:30.278043",
+    "profile": {
+      "id": "user_61ccb0dab9",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_61ddb13d41": {
+    "id": "user_61ddb13d41",
+    "name": "Integration Tester",
+    "email": "test_71e5f6ea@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$PizCnK2KGpbnIwE3$598752660d1eece94b512b464fba4679d1efec3b7d0e352f1dd98cdf4396798a9260bd48781a122db4cc37258e624b26fa9899c5b5f47648f6fe4723633cb9ed",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-03T11:48:21.870344",
+    "profile": {
+      "id": "user_61ddb13d41",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_5cfa470e68": {
+    "id": "user_5cfa470e68",
+    "name": "Integration Tester",
+    "email": "test_66310c24@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$Wlcsxah15YD3tdyA$47e5a2677a92c9e33b6cace5fffe621648317b72787696ad5820102c39f05cccbfc6676c81a1ea0ac7c0b15d1f96b085c072bb1970e0357610a66f8c0bd5dbb8",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-03T11:48:34.086189",
+    "profile": {
+      "id": "user_5cfa470e68",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  },
+  "user_e5b0a2c550": {
+    "id": "user_e5b0a2c550",
+    "name": "Integration Tester",
+    "email": "test_834cebe7@cineflix.ai",
+    "password_hash": "scrypt:32768:8:1$TIBImw1FLgpC46UF$482dfca78e64c7679e6a9d562d0baf4cb25210fe97c1b5cfe0896111fb5328fd1fa87c7a7bdc41a2d87241c0f8dbe092bfa34fcd19c355b5de7b7eb33b39b475",
+    "avatar": "\ud83d\udc64",
+    "bio": "CineFlix Film Enthusiast",
+    "created_at": "2026-09-03T19:19:42.252711",
+    "profile": {
+      "id": "user_e5b0a2c550",
+      "name": "Integration Tester",
+      "avatar": "\ud83d\udc64",
+      "description": "Fresh profile with no past history. Interact with titles to teach CineFlix your taste!",
+      "watch_history": [],
+      "ratings": {},
+      "disliked": [],
+      "preferred_genres": [],
+      "preferred_moods": [],
+      "sliders": {
+        "action_level": 50,
+        "dark_tone": 50,
+        "plot_depth": 50
+      }
+    }
+  }
+}

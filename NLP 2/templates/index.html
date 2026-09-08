@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineFlix | Netflix Movie Recommendation Engine & Bot</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Immediate Theme Initialization Script (prevents theme flickering) -->
+    <script>
+        (function() {
+            try {
+                const savedTheme = localStorage.getItem('cineflix-theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body class="netflix-dark">
+
+    <!-- Minimal Header for Unauthenticated / Welcome Screen -->
+    <header class="auth-header" id="auth-header">
+        <div class="auth-header-container">
+            <a href="#" class="logo" id="auth-brand-logo">
+                <span class="logo-cine">CINE</span><span class="logo-flix">FLIX</span>
+            </a>
+            <div class="auth-header-actions">
+                <div class="theme-switcher-wrapper">
+                    <button class="theme-toggle-btn" id="auth-theme-toggle-btn" type="button" title="Switch Theme (Light / Dark)" aria-label="Switch Theme">
+                        <span class="theme-toggle-opt light" id="auth-theme-opt-light">
+                            <i class="fa-solid fa-sun"></i>
+                            <span class="theme-opt-label">Light</span>
+                        </span>
+                        <span class="theme-toggle-opt dark active" id="auth-theme-opt-dark">
+                            <i class="fa-solid fa-moon"></i>
+                            <span class="theme-opt-label">Dark</span>
+                        </span>
+                    </button>
+                </div>
+                <button class="btn btn-sm btn-ghost" id="welcome-quick-login-btn">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Primary Authentication Welcome Landing Screen -->
+    <section class="auth-welcome-screen" id="auth-welcome-screen">
+        <div class="auth-welcome-backdrop"></div>
+        <div class="auth-welcome-overlay"></div>
+        <div class="auth-welcome-container">
+            <div class="auth-welcome-logo-large">
+                <span class="logo-cine">CINE</span><span class="logo-flix">FLIX</span>
+            </div>
+            
+            <h1 class="auth-welcome-headline">Welcome to CineFlix</h1>
+            <p class="auth-welcome-tagline">"Discover movies you'll actually love."</p>
+            
+            <div class="auth-primary-cards">
+                <!-- Option 1: Login -->
+                <div class="auth-card-option" id="card-opt-login">
+                    <div class="auth-card-icon"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
+                    <h3 class="auth-card-title">Login</h3>
+                    <p class="auth-card-desc">Access your saved watchlist, star ratings, and personalized AI taste profile.</p>
+                    <button type="button" class="btn btn-primary-red auth-card-btn" id="welcome-btn-login">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+                    </button>
+                </div>
+
+                <!-- Option 2: Sign Up -->
+                <div class="auth-card-option featured" id="card-opt-signup">
+                    <div class="auth-card-badge">Free Account</div>
+                    <div class="auth-card-icon"><i class="fa-solid fa-user-plus"></i></div>
+                    <h3 class="auth-card-title">Sign Up</h3>
+                    <p class="auth-card-desc">Create your profile to get real-time NLP recommendations tuned to your taste.</p>
+                    <button type="button" class="btn btn-primary auth-card-btn" id="welcome-btn-signup">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Create Free Account
+                    </button>
+                </div>
+
+                <!-- Option 3: Continue as Guest -->
+                <div class="auth-card-option guest" id="card-opt-guest">
+                    <div class="auth-card-icon"><i class="fa-solid fa-compass"></i></div>
+                    <h3 class="auth-card-title">Continue as Guest</h3>
+                    <p class="auth-card-desc">Instantly browse the Netflix catalog, search movies, and view top trending titles.</p>
+                    <button type="button" class="btn btn-secondary auth-card-btn" id="welcome-btn-guest">
+                        <i class="fa-solid fa-play"></i> Browse as Guest
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar" id="navbar" style="display: none;">
+        <div class="nav-container">
+            <div class="nav-left">
+                <!-- CineFlix Brand Logo (Without AI Badge) -->
+                <a href="#" class="logo" id="nav-brand-logo">
+                    <span class="logo-cine">CINE</span><span class="logo-flix">FLIX</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="#top-recs-section" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Picks</a>
+                    <a href="#top-10-section" class="nav-link"><i class="fa-solid fa-fire"></i> Top 10 Today</a>
+                    <a href="#categories-section" class="nav-link"><i class="fa-solid fa-layer-group"></i> Catalog</a>
+                    <a href="#" class="nav-link" id="nav-chat-btn"><i class="fa-solid fa-robot"></i> CineBot AI</a>
+                    <a href="#" class="nav-link" id="nav-taste-profile-btn"><i class="fa-solid fa-sliders"></i> Taste Profile</a>
+                </nav>
+            </div>
+
+            <div class="nav-right">
+                <!-- Search Input -->
+                <div class="search-box" id="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon" id="search-toggle"></i>
+                    <input type="text" id="movie-search-input" placeholder="Search titles, actors, vibes, directors..." autocomplete="off">
+                    <button class="search-clear-btn" id="search-clear-btn"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <!-- Theme Switcher Toggle (Light / Dark) -->
+                <div class="theme-switcher-wrapper" id="theme-switcher-wrapper">
+                    <button class="theme-toggle-btn" id="theme-toggle-btn" type="button" title="Switch Theme (Light / Dark)" aria-label="Switch Theme">
+                        <span class="theme-toggle-opt light" id="theme-opt-light">
+                            <i class="fa-solid fa-sun"></i>
+                            <span class="theme-opt-label">Light</span>
+                        </span>
+                        <span class="theme-toggle-opt dark active" id="theme-opt-dark">
+                            <i class="fa-solid fa-moon"></i>
+                            <span class="theme-opt-label">Dark</span>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Persona Switcher -->
+                <div class="persona-dropdown-container" id="persona-dropdown-container">
+                    <button class="persona-active-btn" id="persona-btn" title="Quick Demo Personas">
+                        <span class="persona-avatar" id="active-persona-avatar">🚀</span>
+                        <span class="persona-name" id="active-persona-name">Alex (Sci-Fi)</span>
+                        <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="persona-dropdown-menu" id="persona-menu">
+                        <div class="dropdown-header">Quick Demo Personas</div>
+                        <div id="persona-list" class="persona-list">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Authentication Buttons & User Profile Dropdown -->
+                <div class="nav-auth-wrapper" id="nav-auth-wrapper">
+                    <!-- Guest Profile Dropdown (Visible when state is guest) -->
+                    <div class="user-profile-dropdown" id="guest-profile-dropdown" style="display: none;">
+                        <button class="user-profile-btn guest-btn" id="guest-profile-btn">
+                            <span class="user-nav-avatar">👤</span>
+                            <span class="user-nav-name">Guest</span>
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <div class="user-dropdown-menu" id="guest-dropdown-menu">
+                            <div class="user-dropdown-header">
+                                <span class="user-dropdown-email">Guest Mode</span>
+                            </div>
+                            <div class="user-dropdown-items">
+                                <a href="#" class="user-dropdown-item" id="guest-menu-signin">
+                                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+                                </a>
+                                <a href="#" class="user-dropdown-item" id="guest-menu-signup">
+                                    <i class="fa-solid fa-user-plus"></i> Create Account
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="user-dropdown-item text-danger" id="guest-menu-exit">
+                                    <i class="fa-solid fa-door-open"></i> Exit to Welcome Screen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Profile Dropdown (Visible when logged in) -->
+                    <div class="user-profile-dropdown" id="user-profile-dropdown" style="display: none;">
+                        <button class="user-profile-btn" id="user-profile-btn">
+                            <span class="user-nav-avatar" id="user-nav-avatar">👤</span>
+                            <span class="user-nav-name" id="user-nav-name">User</span>
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <div class="user-dropdown-menu" id="user-dropdown-menu">
+                            <div class="user-dropdown-header">
+                                <span class="user-dropdown-email" id="user-dropdown-email">user@cineflix.ai</span>
+                            </div>
+                            <div class="user-dropdown-items">
+                                <a href="#" class="user-dropdown-item" id="menu-my-profile">
+                                    <i class="fa-solid fa-user"></i> My Profile
+                                </a>
+                                <a href="#" class="user-dropdown-item" id="menu-watch-history">
+                                    <i class="fa-solid fa-clock-rotate-left"></i> Watch History
+                                </a>
+                                <a href="#" class="user-dropdown-item" id="menu-taste-profile">
+                                    <i class="fa-solid fa-sliders"></i> Taste Profile
+                                </a>
+                                <a href="#" class="user-dropdown-item" id="menu-settings">
+                                    <i class="fa-solid fa-gear"></i> Preferences & Sliders
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="user-dropdown-item text-danger" id="menu-logout">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chatbot Quick Trigger -->
+                <button class="nav-chat-btn" id="nav-chat-btn" title="Open CineBot AI Assistant">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>CineBot AI</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application Feed -->
+    <main class="main-wrapper" id="main-wrapper" style="display: none;">
+
+        <!-- Search Results Section (Positioned at Top of Page when Searching) -->
+        <section class="movie-row-section search-results-section" id="search-results-section" style="display: none;">
+            <div class="row-header">
+                <div>
+                    <h2 class="row-title"><i class="fa-solid fa-magnifying-glass"></i> SEARCH RESULTS FOR "<span id="search-query-display"></span>"</h2>
+                    <p class="row-subtitle" id="search-results-meta">Matching titles, actors, directors, genres, languages, and mood vibes</p>
+                </div>
+                <button class="btn-close-search" id="btn-close-search"><i class="fa-solid fa-xmark"></i> Clear Search</button>
+            </div>
+            <div class="movie-grid" id="search-movie-grid">
+                <!-- Search cards injected here -->
+            </div>
+        </section>
+
+        <!-- Enhanced Hero Spotlight Billboard -->
+        <section class="hero-section" id="hero">
+            <!-- Background Artwork & Ambient Light -->
+            <div class="hero-backdrop" id="hero-backdrop"></div>
+            <div class="hero-ambient-glow" id="hero-ambient-glow"></div>
+            <div class="hero-overlay"></div>
+
+            <div class="hero-inner-container">
+                <!-- Left: Title Metadata & AI Reasoning -->
+                <div class="hero-content">
+                    <div class="hero-badge-group">
+                        <div class="hero-match-pill" id="hero-match-pill">
+                            <span class="pulse-radar"></span>
+                            <i class="fa-solid fa-bolt"></i>
+                            <span id="hero-match-score">98% Match</span>
+                        </div>
+                        <div class="hero-tech-badge" id="hero-quality">4K Ultra HD</div>
+                        <div class="hero-tech-badge" id="hero-audio">Dolby Atmos</div>
+                    </div>
+
+                    <h1 class="hero-title" id="hero-title">Love, Death & Robots</h1>
+                    <p class="hero-tagline" id="hero-tagline">"NSFW animation from top visionaries."</p>
+
+                    <div class="hero-meta">
+                        <span class="meta-rating" id="hero-rating">TV-MA</span>
+                        <span class="meta-year" id="hero-year">2019</span>
+                        <span class="meta-duration" id="hero-duration">3 Seasons</span>
+                        <span class="meta-imdb"><i class="fa-solid fa-star"></i> <span id="hero-imdb">8.4</span></span>
+                        <span class="meta-genres" id="hero-genres">Animation, Sci-Fi, Horror</span>
+                    </div>
+
+                    <p class="hero-description" id="hero-description">
+                        A collection of animated short stories that span various genres including science fiction, fantasy, horror and comedy, featuring terrifying creatures, wicked surprises and dark humor.
+                    </p>
+
+                    <!-- Glowing Explainable AI Match Insight -->
+                    <div class="hero-reason-box" id="hero-reason-box">
+                        <div class="hero-reason-icon">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <div class="hero-reason-text-wrapper">
+                            <span class="hero-reason-label">CineFlix Insight:</span>
+                            <p id="hero-reason-text">Recommended because you loved Inception and high-concept Sci-Fi with mind-bending visual themes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" id="hero-play-btn">
+                            <i class="fa-solid fa-play"></i> Watch Trailer
+                        </button>
+                        <button class="btn btn-secondary" id="hero-info-btn">
+                            <i class="fa-solid fa-circle-info"></i> More Details
+                        </button>
+                        <button class="btn btn-icon" id="hero-like-btn" title="Rate 5 Stars">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                        </button>
+                        <button class="btn btn-icon" id="hero-watchlist-btn" title="Add to Watchlist">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <!-- Hero Carousel Slider Navigation -->
+                    <div class="hero-slider-nav">
+                        <span class="slider-counter" id="hero-counter">01 / 05</span>
+                        <div class="slider-dots" id="hero-dots">
+                            <span class="hero-dot active" data-slide="0"></span>
+                            <span class="hero-dot" data-slide="1"></span>
+                            <span class="hero-dot" data-slide="2"></span>
+                            <span class="hero-dot" data-slide="3"></span>
+                            <span class="hero-dot" data-slide="4"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: 3D Floating Feature Showcase Card with Taste Radar -->
+                <div class="hero-showcase-wrapper">
+                    <div class="showcase-card" id="hero-showcase-card">
+                        <div class="showcase-poster" id="hero-showcase-poster">
+                            <div class="showcase-overlay">
+                                <button class="showcase-play-trigger" id="showcase-play-trigger">
+                                    <i class="fa-solid fa-play"></i>
+                                </button>
+                            </div>
+                            <span class="showcase-match-badge" id="showcase-match-badge">98% Fit</span>
+                        </div>
+
+                        <!-- Embedded Taste Fit Radar Bars -->
+                        <div class="showcase-radar">
+                            <div class="radar-header">
+                                <span><i class="fa-solid fa-chart-simple"></i> Taste Synergy Gauge</span>
+                                <span class="radar-persona" id="showcase-persona-tag">Alex's Taste</span>
+                            </div>
+                            <div class="radar-meters">
+                                <div class="radar-meter-item">
+                                    <div class="radar-label"><span>Plot Complexity</span><span>96%</span></div>
+                                    <div class="meter-track"><div class="meter-fill" style="width: 96%;"></div></div>
+                                </div>
+                                <div class="radar-meter-item">
+                                    <div class="radar-label"><span>Vibe Alignment</span><span>94%</span></div>
+                                    <div class="meter-track"><div class="meter-fill cyan" style="width: 94%;"></div></div>
+                                </div>
+                                <div class="radar-meter-item">
+                                    <div class="radar-label"><span>Adrenaline Pacing</span><span>88%</span></div>
+                                    <div class="meter-track"><div class="meter-fill gold" style="width: 88%;"></div></div>
+                                </div>
+                            </div>
+                            <div class="showcase-quick-rate">
+                                <span>Quick Rate:</span>
+                                <div class="quick-stars" id="hero-quick-stars">
+                                    <i class="fa-solid fa-star" data-rating="1"></i>
+                                    <i class="fa-solid fa-star" data-rating="2"></i>
+                                    <i class="fa-solid fa-star" data-rating="3"></i>
+                                    <i class="fa-solid fa-star" data-rating="4"></i>
+                                    <i class="fa-solid fa-star" data-rating="5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inline AI Prompt Bar & Vibe Navigator -->
+        <section class="ai-prompt-bar-section">
+            <div class="container">
+                <div class="ai-prompt-card">
+                    <div class="ai-prompt-header">
+                        <div class="ai-prompt-avatar"><i class="fa-solid fa-robot"></i></div>
+                        <div>
+                            <h3 class="ai-prompt-title">What would you like to watch tonight?</h3>
+                            <p class="ai-prompt-subtitle">Ask CineBot AI in plain English or pick a mood vibe below</p>
+                        </div>
+                    </div>
+
+                    <form class="ai-inline-form" id="ai-inline-form">
+                        <div class="ai-input-wrapper">
+                            <i class="fa-solid fa-wand-sparkles ai-input-icon"></i>
+                            <input type="text" id="ai-inline-input" placeholder="e.g., 'Dark psychological mystery with intense twists', '90s Keanu Reeves action'..." autocomplete="off">
+                            <button type="button" class="btn-voice-input" id="btn-voice-input" title="Speak to CineBot (Voice Input)">
+                                <i class="fa-solid fa-microphone"></i>
+                            </button>
+                            <button type="submit" class="btn-ai-submit">
+                                <span>Ask CineBot</span> <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Quick Prompt Suggestions Chips -->
+                    <div class="quick-prompt-chips" id="quick-prompt-chips">
+                        <button class="quick-chip" data-query="Mind-bending sci-fi movies with plot twists"><i class="fa-solid fa-brain"></i> Mind-Bending Twists</button>
+                        <button class="quick-chip" data-query="Gritty crime thrillers like Mindhunter and Se7en"><i class="fa-solid fa-skull"></i> Dark Crime Sagas</button>
+                        <button class="quick-chip" data-query="Feel-good wholesome comedy series for a cozy weekend"><i class="fa-solid fa-mug-hot"></i> Cozy Feel-Good</button>
+                        <button class="quick-chip" data-query="Best Christopher Nolan and Denis Villeneuve films"><i class="fa-solid fa-clapperboard"></i> Nolan & Villeneuve</button>
+                        <button class="quick-chip" data-query="Top rated anime series on Netflix"><i class="fa-solid fa-dragon"></i> Epic Anime</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Taste & Mood Filter Bar -->
+        <section class="taste-filter-bar">
+            <div class="container">
+                <div class="filter-bar-inner">
+                    <div class="filter-bar-label">
+                        <i class="fa-solid fa-sliders"></i> <strong>Filter Feed:</strong>
+                    </div>
+                    <div class="mood-chips" id="mood-chips">
+                        <button class="mood-chip active" data-mood="all">All Picks</button>
+                        <button class="mood-chip" data-mood="Mind-bending">🧠 Mind-Bending</button>
+                        <button class="mood-chip" data-mood="Dark">🌑 Dark & Gritty</button>
+                        <button class="mood-chip" data-mood="Feel-Good">🍿 Feel-Good</button>
+                        <button class="mood-chip" data-mood="Non-Stop Action">🔥 Fast Action</button>
+                        <button class="mood-chip" data-mood="Wholesome">💖 Wholesome</button>
+                        <button class="mood-chip" data-mood="Visually Stunning">🎨 Visual Stunner</button>
+                    </div>
+                    <div class="filter-type-toggle">
+                        <button class="type-btn active" data-type="All">All</button>
+                        <button class="type-btn" data-type="Movie">Movies</button>
+                        <button class="type-btn" data-type="TV Show">TV Series</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cold Start Onboarding Banner (Visible for new users with 0 ratings) -->
+        <div class="container" id="cold-start-banner" style="display: none; margin-bottom: 24px;">
+            <div class="onboarding-card">
+                <div class="onboarding-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div class="onboarding-content">
+                    <h3 class="onboarding-title">Build Your Personalized Netflix Taste Profile</h3>
+                    <p class="onboarding-text">Rate a few movies or ask CineBot for recommendations to unlock real-time NLP taste radar & personalized match scores!</p>
+                </div>
+                <button class="btn btn-primary btn-sm" id="btn-onboarding-explore">Explore & Rate</button>
+            </div>
+        </div>
+
+        <!-- Row 1: Top Recommendations -->
+        <section class="movie-row-section" id="top-recs-section">
+            <div class="row-header">
+                <div>
+                    <h2 class="row-title" id="ai-recs-heading">
+                        <span class="title-highlight">🔥 Top AI Recommendations</span> for You
+                    </h2>
+                    <p class="row-subtitle" id="ai-recs-subtitle">Tuned to your active viewing history and star ratings</p>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-arrow prev" data-target="top-recs-carousel"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="carousel-arrow next" data-target="top-recs-carousel"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="movie-carousel" id="top-recs-carousel">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Row 2: Top 10 on Netflix Today (Numbered Badge Row) -->
+        <section class="movie-row-section" id="top-10-section">
+            <div class="row-header">
+                <div>
+                    <h2 class="row-title"><span class="title-highlight">🏆 Top 10 Movies & TV Series</span> on Netflix Today</h2>
+                    <p class="row-subtitle">Most streamed titles with high critical acclaim</p>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-arrow prev" data-target="top-10-carousel"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="carousel-arrow next" data-target="top-10-carousel"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="movie-carousel top-10-carousel" id="top-10-carousel">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Row 3: "Because You Watched..." (Dynamic item similarity) -->
+        <section class="movie-row-section" id="because-watched-section">
+            <div class="row-header">
+                <div>
+                    <h2 class="row-title" id="because-watched-title">
+                        Because You Watched <span class="watched-source-title" id="because-watched-source">Inception</span>
+                    </h2>
+                    <p class="row-subtitle">High content similarity, overlapping themes, and creative personnel</p>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-arrow prev" data-target="because-watched-carousel"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="carousel-arrow next" data-target="because-watched-carousel"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="movie-carousel" id="because-watched-carousel">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Row 4: Mind-Benders & Psychological Mysteries -->
+        <section class="movie-row-section" id="mindbenders-section">
+            <div class="row-header">
+                <div>
+                    <h2 class="row-title">🧠 Mind-Bending Sci-Fi & Psychological Puzzles</h2>
+                    <p class="row-subtitle">Complex plots, alternate realities, and twist endings</p>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-arrow prev" data-target="mindbenders-carousel"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="carousel-arrow next" data-target="mindbenders-carousel"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="movie-carousel" id="mindbenders-carousel">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Row 5: Gritty Crime & High-Stakes Thrillers -->
+        <section class="movie-row-section" id="crime-section">
+            <div class="row-header">
+                <div>
+                    <h2 class="row-title">🔍 Gritty Crime Sagas & Mastermind Heists</h2>
+                    <p class="row-subtitle">Cartel dramas, police procedurals, and dark conspiracies</p>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-arrow prev" data-target="crime-carousel"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="carousel-arrow next" data-target="crime-carousel"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="movie-carousel" id="crime-carousel">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Row 6: Entire Catalog Explorer -->
+        <section class="movie-row-section" id="categories-section">
+            <div class="row-header">
+                <div>
+                    <h2 class="row-title">📚 Explore All Netflix Titles</h2>
+                    <p class="row-subtitle">Filter by genre, sort by IMDb score, or search key terms</p>
+                </div>
+                <div class="catalog-filters">
+                    <select id="genre-select-dropdown" class="netflix-select">
+                        <option value="All">All Genres</option>
+                    </select>
+                    <select id="language-select-dropdown" class="netflix-select">
+                        <option value="All">All Languages</option>
+                    </select>
+                    <select id="industry-select-dropdown" class="netflix-select">
+                        <option value="All">All Industries</option>
+                    </select>
+                    <select id="country-select-dropdown" class="netflix-select">
+                        <option value="All">All Countries</option>
+                    </select>
+                    <select id="sort-select-dropdown" class="netflix-select">
+                        <option value="default">Default Match</option>
+                        <option value="imdb">Highest IMDb Rating</option>
+                        <option value="year">Newest First</option>
+                        <option value="title">Title (A-Z)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="movie-grid" id="full-catalog-grid">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating CineBot Chat Widget Trigger -->
+    <div class="floating-chat-trigger" id="floating-chat-trigger">
+        <div class="bot-badge-pulse"></div>
+        <div class="bot-icon-wrapper">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+        <span class="trigger-text">Ask CineBot AI</span>
+    </div>
+
+    <!-- Enhanced CineBot Slide-Out Conversation Drawer -->
+    <div class="chat-drawer" id="chat-drawer">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-bot-avatar">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div>
+                    <h3 class="chat-title">CineBot AI Curator</h3>
+                    <p class="chat-status"><span class="status-dot"></span> Online & Analyzing Netflix Catalog</p>
+                </div>
+            </div>
+            <div class="chat-header-actions">
+                <button class="chat-action-btn" id="chat-expand-btn" title="Toggle Full Width Mode"><i class="fa-solid fa-expand"></i></button>
+                <button class="chat-action-btn" id="chat-clear-btn" title="Clear Conversation"><i class="fa-solid fa-trash-can"></i></button>
+                <button class="chat-action-btn" id="chat-close-btn" title="Close Chat"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+
+        <!-- Chat Message Area -->
+        <div class="chat-messages" id="chat-messages">
+            <!-- Messages injected dynamically -->
+        </div>
+
+        <!-- Quick Prompt Suggestion Chips -->
+        <div class="chat-suggestions" id="chat-suggestions">
+            <!-- Injected via JS -->
+        </div>
+
+        <!-- Voice Status Overlay if Listening -->
+        <div class="voice-recording-indicator" id="voice-recording-indicator" style="display: none;">
+            <div class="voice-pulse-ring"></div>
+            <span><i class="fa-solid fa-microphone"></i> Listening to your voice... Speak now</span>
+            <button class="btn-voice-cancel" id="btn-voice-cancel">Cancel</button>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form class="chat-input-form" id="chat-input-form">
+            <div class="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Ask e.g. 'Mind-bending sci-fi like Interstellar'..." autocomplete="off">
+                <button type="button" class="chat-mic-btn" id="chat-mic-btn" title="Voice Input">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+                <button type="submit" class="chat-send-btn" id="chat-send-btn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Taste Profile & Stats Modal -->
+    <div class="modal-overlay" id="taste-profile-modal">
+        <div class="modal-card taste-modal-content">
+            <button class="modal-close-btn" id="taste-modal-close"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="taste-modal-header">
+                <div class="user-avatar-large" id="modal-user-avatar">🚀</div>
+                <div>
+                    <h2 class="modal-title" id="modal-user-name">Alex's Taste Profile</h2>
+                    <p class="modal-subtitle">Real-time NLP Vector Model & Viewing History Analytics</p>
+                </div>
+            </div>
+
+            <div class="taste-modal-grid">
+                <!-- Left: Analytics & Radar -->
+                <div class="taste-col-analytics">
+                    <h4 class="col-title"><i class="fa-solid fa-chart-pie"></i> Genre Affinity Breakdown</h4>
+                    <div class="genre-bars" id="genre-affinity-bars">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <h4 class="col-title" style="margin-top: 24px;"><i class="fa-solid fa-tags"></i> Top Liked Mood Vibes</h4>
+                    <div class="mood-tag-cloud" id="modal-mood-cloud">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <h4 class="col-title" style="margin-top: 24px;"><i class="fa-solid fa-sliders"></i> Taste Tuning Sliders</h4>
+                    <div class="taste-sliders-container">
+                        <div class="slider-group">
+                            <label>Action & Adrenaline: <span id="val-action">70%</span></label>
+                            <input type="range" min="0" max="100" value="70" class="netflix-range" id="slider-action">
+                        </div>
+                        <div class="slider-group">
+                            <label>Dark & Gritty Tone: <span id="val-dark">80%</span></label>
+                            <input type="range" min="0" max="100" value="80" class="netflix-range" id="slider-dark">
+                        </div>
+                        <div class="slider-group">
+                            <label>Plot Complexity: <span id="val-plot">90%</span></label>
+                            <input type="range" min="0" max="100" value="90" class="netflix-range" id="slider-plot">
+                        </div>
+                        <button class="btn btn-secondary btn-sm" id="btn-save-sliders">Apply Sliders</button>
+                    </div>
+                </div>
+
+                <!-- Right: Watched & Rated History -->
+                <div class="taste-col-history">
+                    <div class="history-header">
+                        <h4 class="col-title"><i class="fa-solid fa-clock-rotate-left"></i> Viewing & Rating History (<span id="modal-watched-count">0</span>)</h4>
+                        <button class="btn-text-danger" id="btn-reset-profile"><i class="fa-solid fa-rotate-left"></i> Reset Profile</button>
+                    </div>
+                    <div class="history-list" id="modal-history-list">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movie Detail Preview Modal -->
+    <div class="modal-overlay" id="movie-detail-modal">
+        <div class="modal-card movie-modal-content">
+            <button class="modal-close-btn" id="movie-modal-close"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="detail-hero" id="detail-backdrop">
+                <div class="detail-hero-overlay"></div>
+                <div class="detail-hero-content">
+                    <div class="detail-match-badge" id="detail-match-score">95% Match</div>
+                    <h2 class="detail-title" id="detail-title">Movie Title</h2>
+                    <p class="detail-tagline" id="detail-tagline"></p>
+                    <div class="detail-meta">
+                        <span class="meta-rating" id="detail-rating">PG-13</span>
+                        <span class="meta-year" id="detail-year">2020</span>
+                        <span class="meta-duration" id="detail-duration">120 min</span>
+                        <span class="meta-imdb"><i class="fa-solid fa-star"></i> <span id="detail-imdb">8.5</span></span>
+                        <span class="detail-type-badge" id="detail-type">Movie</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-body">
+                <!-- AI Explanation Banner -->
+                <div class="explainable-ai-banner" id="detail-explanation-banner">
+                    <div class="banner-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div class="banner-text">
+                        <strong>Why CineFlix Recommends This:</strong>
+                        <p id="detail-explanation-text">Because you enjoyed psychological tension and mind-bending narratives in Inception.</p>
+                    </div>
+                </div>
+
+                <div class="detail-grid">
+                    <div class="detail-main">
+                        <p class="detail-synopsis" id="detail-description">Movie synopsis goes here...</p>
+                        
+                        <div class="detail-rating-widget">
+                            <span class="rate-label">Your Rating:</span>
+                            <div class="star-rating-buttons" id="detail-star-buttons">
+                                <button class="star-btn" data-rating="1"><i class="fa-solid fa-star"></i></button>
+                                <button class="star-btn" data-rating="2"><i class="fa-solid fa-star"></i></button>
+                                <button class="star-btn" data-rating="3"><i class="fa-solid fa-star"></i></button>
+                                <button class="star-btn" data-rating="4"><i class="fa-solid fa-star"></i></button>
+                                <button class="star-btn" data-rating="5"><i class="fa-solid fa-star"></i></button>
+                            </div>
+                            <button class="btn btn-secondary btn-sm" id="detail-dislike-btn" title="Don't recommend this again">
+                                <i class="fa-solid fa-thumbs-down"></i> Not for me
+                            </button>
+                        </div>
+
+                        <!-- Mood Tags -->
+                        <div class="detail-tags-section">
+                            <span class="tag-section-label">Vibe & Atmosphere:</span>
+                            <div class="tag-pills" id="detail-mood-pills"></div>
+                        </div>
+
+                        <!-- Keywords -->
+                        <div class="detail-tags-section" style="margin-top: 12px;">
+                            <span class="tag-section-label">Thematic Keywords:</span>
+                            <div class="tag-pills secondary" id="detail-keyword-pills"></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-sidebar">
+                        <div class="sidebar-item">
+                            <span class="sidebar-label">Director:</span>
+                            <span class="sidebar-val" id="detail-director">Director Name</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="sidebar-label">Cast:</span>
+                            <span class="sidebar-val" id="detail-cast">Actor 1, Actor 2, Actor 3</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="sidebar-label">Language:</span>
+                            <span class="sidebar-val" id="detail-language">Hindi</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="sidebar-label">Industry / Country:</span>
+                            <span class="sidebar-val" id="detail-country">India (Bollywood)</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="sidebar-label">Genres:</span>
+                            <span class="sidebar-val" id="detail-genres">Sci-Fi, Action</span>
+                        </div>
+                        <button class="btn btn-primary" id="detail-trailer-btn" style="margin-top: 8px; width: 100%;">
+                            <i class="fa-solid fa-play"></i> Watch Trailer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- More Like This Section in Modal -->
+                <div class="modal-similar-section">
+                    <h3 class="similar-heading"><i class="fa-solid fa-film"></i> More Like This on Netflix</h3>
+                    <div class="similar-grid" id="modal-similar-grid">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cinematic Video Trailer Player Modal -->
+    <div class="modal-overlay" id="trailer-modal">
+        <div class="modal-card trailer-modal-content">
+            <button class="modal-close-btn" id="trailer-modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="trailer-iframe-wrapper" id="trailer-iframe-container">
+                <!-- YouTube or video frame inserted dynamically -->
+            </div>
+            <div class="trailer-footer-info">
+                <h3 id="trailer-movie-title">Movie Title Trailer</h3>
+                <span class="trailer-sub" id="trailer-movie-sub">HD Official Netflix Preview</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         User Authentication Modal (Login / Signup)
+         ========================================== -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal-card auth-modal-card">
+            <button class="modal-close-btn" id="auth-modal-close"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="auth-modal-header">
+                <div class="auth-brand-logo">
+                    <span class="logo-cine">CINE</span><span class="logo-flix">FLIX</span>
+                </div>
+                <div class="auth-tab-switch">
+                    <button class="auth-tab-btn active" id="tab-btn-login">Sign In</button>
+                    <button class="auth-tab-btn" id="tab-btn-signup">Create Account</button>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form" id="login-form">
+                <div class="auth-alert error" id="login-alert-error" style="display: none;"></div>
+                <div class="auth-alert success" id="login-alert-success" style="display: none;"></div>
+
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                        <input type="email" id="login-email" placeholder="name@example.com" required autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="login-password">Password</label>
+                        <a href="#" class="forgot-link" id="link-forgot-password">Forgot password?</a>
+                    </div>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+                        <button type="button" class="btn-toggle-pw" id="toggle-login-pw" title="Show/Hide Password">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-row-checkbox">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="login-remember" checked>
+                        <span class="checkmark"></span>
+                        Remember this device
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary-red btn-auth-submit" id="btn-login-submit">
+                    <span class="btn-text">Sign In</span>
+                    <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i></span>
+                </button>
+
+                <!-- Quick Demo Login Helpers -->
+                <div class="auth-demo-section">
+                    <span class="demo-label">Or quick demo sign in as:</span>
+                    <div class="demo-account-pills">
+                        <button type="button" class="demo-pill" data-email="alex@cineflix.ai" data-pw="password123">🚀 Alex (Sci-Fi)</button>
+                        <button type="button" class="demo-pill" data-email="sarah@cineflix.ai" data-pw="password123">🔍 Sarah (Crime)</button>
+                        <button type="button" class="demo-pill" data-email="jordan@cineflix.ai" data-pw="password123">🍿 Jordan (Comedies)</button>
+                        <button type="button" class="demo-pill" data-email="marcus@cineflix.ai" data-pw="password123">🔥 Marcus (Action)</button>
+                    </div>
+                </div>
+
+                <div class="auth-footer-prompt">
+                    <span>Don't have a CineFlix account?</span>
+                    <a href="#" id="link-switch-to-signup">Sign up now</a>
+                </div>
+
+                <div class="auth-guest-prompt-row">
+                    <div class="auth-divider"><span>OR</span></div>
+                    <button type="button" class="btn btn-secondary btn-block" id="btn-login-guest">
+                        <i class="fa-solid fa-compass"></i> Continue as Guest
+                    </button>
+                </div>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="auth-form" id="signup-form" style="display: none;">
+                <div class="auth-alert error" id="signup-alert-error" style="display: none;"></div>
+                <div class="auth-alert success" id="signup-alert-success" style="display: none;"></div>
+
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" id="signup-name" placeholder="e.g. Sanika Takarkhede" required autocomplete="name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                        <input type="email" id="signup-email" placeholder="name@example.com" required autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" id="signup-password" placeholder="At least 6 characters" required autocomplete="new-password">
+                        <button type="button" class="btn-toggle-pw" id="toggle-signup-pw" title="Show/Hide Password">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-shield-halved input-icon"></i>
+                        <input type="password" id="signup-confirm-password" placeholder="Re-enter password" required autocomplete="new-password">
+                    </div>
+                </div>
+
+                <div class="form-row-checkbox">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="signup-terms" required checked>
+                        <span class="checkmark"></span>
+                        I agree to CineFlix Terms & Privacy Policy
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary-red btn-auth-submit" id="btn-signup-submit">
+                    <span class="btn-text">Create Free Account</span>
+                    <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i></span>
+                </button>
+
+                <div class="auth-footer-prompt">
+                    <span>Already have a CineFlix account?</span>
+                    <a href="#" id="link-switch-to-login">Sign in</a>
+                </div>
+
+                <div class="auth-guest-prompt-row">
+                    <div class="auth-divider"><span>OR</span></div>
+                    <button type="button" class="btn btn-secondary btn-block" id="btn-signup-guest">
+                        <i class="fa-solid fa-compass"></i> Continue as Guest
+                    </button>
+                </div>
+            </form>
+
+            <!-- Forgot Password Form -->
+            <form class="auth-form" id="forgot-form" style="display: none;">
+                <div class="auth-alert error" id="forgot-alert-error" style="display: none;"></div>
+                <div class="auth-alert success" id="forgot-alert-success" style="display: none;"></div>
+
+                <p class="auth-desc-text">Enter your registered email address and we'll send you instructions to reset your CineFlix password.</p>
+
+                <div class="form-group">
+                    <label for="forgot-email">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                        <input type="email" id="forgot-email" placeholder="name@example.com" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary-red btn-auth-submit" id="btn-forgot-submit">
+                    <span class="btn-text">Send Reset Link</span>
+                    <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i></span>
+                </button>
+
+                <div class="auth-footer-prompt">
+                    <a href="#" id="link-back-to-login"><i class="fa-solid fa-arrow-left"></i> Back to Sign In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         Guest Feature Protection Prompt Modal
+         ========================================== -->
+    <div class="modal-overlay" id="guest-auth-prompt-modal">
+        <div class="modal-card guest-prompt-modal-card">
+            <button class="modal-close-btn" id="guest-prompt-close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="guest-prompt-icon-wrapper">
+                <div class="guest-prompt-icon"><i class="fa-solid fa-lock"></i></div>
+            </div>
+            <h2 class="guest-prompt-title">Sign in to unlock personalized CineFlix features</h2>
+            <p class="guest-prompt-subtitle" id="guest-prompt-desc">
+                Sign in or create a free account to build your personal taste profile, rate movies with stars, save your viewing history, and receive personalized AI recommendations.
+            </p>
+            <div class="guest-prompt-actions">
+                <button type="button" class="btn btn-primary-red" id="guest-prompt-login-btn">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+                </button>
+                <button type="button" class="btn btn-primary" id="guest-prompt-signup-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Create Free Account
+                </button>
+                <button type="button" class="btn btn-secondary" id="guest-prompt-continue-btn">
+                    Continue as Guest
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Profile Modal -->
+    <div class="modal-overlay" id="user-profile-modal">
+        <div class="modal-card user-modal-card">
+            <button class="modal-close-btn" id="user-modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="user-modal-header">
+                <div class="user-avatar-picker">
+                    <div class="user-avatar-current" id="profile-avatar-current">👤</div>
+                    <div class="avatar-options">
+                        <button type="button" class="avatar-opt" data-avatar="👤">👤</button>
+                        <button type="button" class="avatar-opt" data-avatar="🚀">🚀</button>
+                        <button type="button" class="avatar-opt" data-avatar="🔍">🔍</button>
+                        <button type="button" class="avatar-opt" data-avatar="🍿">🍿</button>
+                        <button type="button" class="avatar-opt" data-avatar="🔥">🔥</button>
+                        <button type="button" class="avatar-opt" data-avatar="✨">✨</button>
+                        <button type="button" class="avatar-opt" data-avatar="🎬">🎬</button>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="modal-title" id="profile-modal-name">My Profile</h2>
+                    <p class="modal-subtitle" id="profile-modal-email">user@cineflix.ai</p>
+                </div>
+            </div>
+
+            <form class="user-profile-form" id="profile-edit-form">
+                <div class="form-group">
+                    <label for="edit-profile-name">Display Name</label>
+                    <input type="text" id="edit-profile-name" class="netflix-input" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-profile-bio">Movie Bio / Favorite Vibes</label>
+                    <input type="text" id="edit-profile-bio" class="netflix-input" placeholder="e.g. Sci-Fi and David Fincher mystery buff">
+                </div>
+                <div class="profile-stats-chips">
+                    <div class="stat-chip"><i class="fa-solid fa-film"></i> <span id="profile-stat-watched">0 Watched</span></div>
+                    <div class="stat-chip"><i class="fa-solid fa-star"></i> <span id="profile-stat-rated">0 Rated</span></div>
+                    <div class="stat-chip"><i class="fa-solid fa-bolt"></i> <span id="profile-stat-match">Dynamic Vector</span></div>
+                </div>
+                <div class="profile-actions">
+                    <button type="submit" class="btn btn-primary-red">Save Profile</button>
+                    <button type="button" class="btn btn-secondary" id="btn-profile-logout">Logout</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check toast-icon"></i>
+        <span class="toast-message" id="toast-msg">Preferences updated!</span>
+    </div>
+
+    <!-- Minimal & Clean Footer -->
+    <footer class="footer" id="app-footer" style="display: none;">
+        <div class="container footer-content">
+            <div class="footer-top-row">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-cine">CINE</span><span class="logo-flix">FLIX</span>
+                    </a>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://github.com" target="_blank" rel="noreferrer" title="GitHub" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noreferrer" title="Twitter" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://discord.com" target="_blank" rel="noreferrer" title="Discord" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://netflix.com" target="_blank" rel="noreferrer" title="Netflix" class="social-icon"><i class="fa-brands fa-netflix"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-nav-grid">
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Navigation</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#top-recs-section">Top Recommendations</a></li>
+                        <li><a href="#top-10-section">Top 10 Today</a></li>
+                        <li><a href="#categories-section">Browse Catalog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Features</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="#" id="footer-link-taste">Taste Profile & Radar</a></li>
+                        <li><a href="#" id="footer-link-cinebot">CineBot AI Curator</a></li>
+                        <li><a href="#mindbenders-section">Mind-Benders</a></li>
+                        <li><a href="#crime-section">Crime Sagas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Account</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="#" id="footer-link-signin">Sign In</a></li>
+                        <li><a href="#" id="footer-link-signup">Create Account</a></li>
+                        <li><a href="#" id="footer-link-history">Viewing History</a></li>
+                        <li><a href="#" id="footer-link-privacy">Privacy & Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom-row">
+                <p class="copyright-text">&copy; 2026 CineFlix. Built for Netflix cinema lovers.</p>
+                <div class="footer-legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <span>•</span>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Script -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
